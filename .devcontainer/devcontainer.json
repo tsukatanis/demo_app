@@ -1,0 +1,21 @@
+{
+    # 設定を一意に識別する任意の名前にする
+    "name": "hello",
+
+    # コンテナを作成するためのDockerfileのファイル名を指定する
+    # Dockerfileの内容は本文中参照
+    "dockerfile": "Dockerfile",
+
+    # この設定によりホストosのポート80宛の通信がコンテナのポート80に転送される
+    # ホストPCからブラウザで動作確認するために必要
+    "forwardPorts": [80],
+
+    # ディフォルトでは、VS Codeからのコンテナ起動時のコマンドは
+    # while sleep 1000; do ：; doneに上書きされてしまうため、それを防止する
+    "overrideCommand": false,
+
+    # Gitリポジトリのsrcディレクトリを、Apacheのドキュメントルートである/var/www/htmlにマウント
+    "mounts": [
+        "source=${localWorkspaceFolder}/src,target=/var/www/html,type=bind,consistancy=cached"
+    ]
+}
